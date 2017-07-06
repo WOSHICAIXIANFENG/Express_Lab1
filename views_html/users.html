@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Show User List</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/my.css' />
+</head>
+<body>
+<h1>Show User List</h1>
+
+<hr/>
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>City</th>
+        <th>Zip code</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Website</th>
+    </tr>
+    <% for(var i=0; i < users.length; i++) { %>
+    <tr>
+        <td><%= users[i].id %></td>
+        <td><%= users[i].name %></td>
+        <td><%= users[i].username %></td>
+        <td><%= users[i].email %></td>
+        <td><%= users[i].address.city %></td>
+        <td><%= users[i].address.zipcode %></td>
+        <td><%= users[i].address.geo.lat %></td>
+        <td><%= users[i].address.geo.lng %></td>
+        <td><%= users[i].website %></td>
+    </tr>
+    <% }%>
+</table>
+</body>
+</html>

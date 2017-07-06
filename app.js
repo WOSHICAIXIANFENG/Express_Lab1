@@ -5,15 +5,31 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
+var cons = require('consolidate');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
+// This setting will permit trusting in the X-Forwarded-* headers.
+app.set('trust proxy', true);
+app.enable('trust proxy');
+
+// case sensitive and strict
+app.enable('case sensitive routing');
+
+// Enable view caching for faster performance
+app.set('view cache', true);
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
+
+// templating library adapter for Express
+app.engine("html", cons.ejs);
+app.set('view engine', 'html');
+app.set('views', __dirname + "/views_html");
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
